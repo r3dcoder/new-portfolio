@@ -24,7 +24,7 @@ function Home2() {
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
-              <img src={myImg} className="img-fluid rounded-circle" alt="avatar" />
+              <img src={myImg} className="img-fluid rounded-lg-only" alt="avatar" />
             </Tilt>
           </Col>
         </Row>
