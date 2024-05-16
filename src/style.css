@@ -618,6 +618,7 @@ button:focus {
   justify-content: center;
 }
 
+
 .resume-left {
   padding-right: 80px !important;
 }
@@ -773,4 +774,8 @@ button:focus {
   color: white;
   padding: 10px;
   font-size: 18px; /* Adjust as needed */
+}
+
+.resume-pdf{
+  display: flex;
 }
