@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ReactGA from 'react-ga4';
+
+// Initialize Google Analytics with your Measurement ID
+ReactGA.initialize('G-131BWP0BBF');
+ReactGA.send({ hitType: 'pageview', page: window.location.pathname + window.location.search });
 
 ReactDOM.render(
   <React.StrictMode>

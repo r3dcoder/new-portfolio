@@ -6,12 +6,12 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
-import ReactGA from 'react-ga';
 
 import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation,
   Navigate
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
@@ -19,8 +19,19 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import ReactGA from 'react-ga4';
+
+// Initialize Google Analytics with your Measurement ID
+ReactGA.initialize('G-131BWP0BBF');
+
 function App() {
   const [load, upadateLoad] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Track page views on route change
+    ReactGA.send({ hitType: 'pageview', page: location.pathname + location.search });
+  }, [location]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,19 +41,8 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  ReactGA.initialize('UA-000000-01', {
-    debug: true,
-    titleCase: false,
-    gaOptions: {
-      userId: 8407152369
-
-    }
-  });
-
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
   return (
-    <Router>
+    <>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
@@ -56,8 +56,16 @@ function App() {
         </Routes>
         <Footer />
       </div>
+    </>
+  );
+}
+
+function Main() {
+  return (
+    <Router>
+      <App />
     </Router>
   );
 }
 
-export default App;
+export default Main;
